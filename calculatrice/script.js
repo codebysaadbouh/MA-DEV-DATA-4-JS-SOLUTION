@@ -1,6 +1,7 @@
 let calculChoice
 let firstDigit
 let secondDigit
+var chance = 3
 
 
 /**
@@ -14,9 +15,11 @@ let secondDigit
 do {
     calculChoice = prompt("Choisissez votre mode de calcul : \n 1- Addition \n 2- Soustraction \n 3- Multiplication \n 4- Division");
     console.log(`calculChoice = ${calculChoice}`);
-}while(isNaN(calculChoice) || calculChoice != 1 && calculChoice != 2 && calculChoice != 3 && calculChoice != 4);    
+    chance--;
+    console.log(`Il vous reste ${chance} chance(s)`);
+}while(isNaN(calculChoice) || calculChoice != 1 && calculChoice != 2 && calculChoice != 3 && calculChoice != 4 && chance > 0);    
 
-
+if (chance != 0) {
 
 /**
  * Demander à l'utilisateur de saisir 2 nombres
@@ -27,9 +30,11 @@ do {
     numberTwo = parseInt(prompt("Entrez le deuxième nombre"));
     console.log(`numberOne = ${numberOne}`);
     console.log(`numberTwo = ${numberTwo}`);
-} while (isNaN(numberOne) || isNaN(numberTwo));
+    chance--;
+    console.log(`Il vous reste ${chance} chance(s)`);
+} while (isNaN(numberOne) || isNaN(numberTwo) && chance > 0);
 
-
+if(chance != 0) {
 
 /**
  * Les fonctions d'addition, de soustraction, de multiplication et de division sont définies
@@ -89,4 +94,10 @@ try {
 }
 } catch (error) {
     alert(error.message);
+}
+} else {
+    alert("Vous n'avez plus de chance(s) - Numbers !");
+}
+} else {
+    alert("Vous n'avez plus de chance(s) - Opérations !");
 }
