@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculatrice Simple</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        
+        .calculatrice {
+            background-color: #f0f0f0;
+            padding: 20px;
+            border-radius: 10px;
+            display: inline-block;
+        }
+        
+        input {
+            width: 200px;
+            height: 40px;
+            font-size: 18px;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        button {
+            width: 50px;
+            height: 50px;
+            font-size: 18px;
+            margin: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Ma Calculatrice</h1>
+    
+    <div class="calculatrice">
+        <input type="text" id="resultat" readonly>
+        <br>
+        
+        <!-- Chiffres -->
+        <button onclick="ajouter('1')">1</button>
+        <button onclick="ajouter('2')">2</button>
+        <button onclick="ajouter('3')">3</button>
+        <button onclick="ajouter('+')" style="background-color: orange;">+</button>
+        <br>
+        
+        <button onclick="ajouter('4')">4</button>
+        <button onclick="ajouter('5')">5</button>
+        <button onclick="ajouter('6')">6</button>
+        <button onclick="ajouter('-')" style="background-color: orange;">-</button>
+        <br>
+        
+        <button onclick="ajouter('7')">7</button>
+        <button onclick="ajouter('8')">8</button>
+        <button onclick="ajouter('9')">9</button>
+        <button onclick="ajouter('*')" style="background-color: orange;">×</button>
+        <br>
+        
+        <button onclick="effacer()" style="background-color: red; color: white;">C</button>
+        <button onclick="ajouter('0')">0</button>
+        <button onclick="calculer()" style="background-color: green; color: white;">=</button>
+        <button onclick="ajouter('/')" style="background-color: orange;">/</button>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
