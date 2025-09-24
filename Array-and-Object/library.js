@@ -29,16 +29,43 @@ const bibliotheque = {
  * @returns {object} Résultat de l'opération
  */
 function ajouterLivre(titre, auteur, isbn, annee, genre) {
-    // TODO: Implémenter la validation complète
     // - Vérifier que tous les paramètres sont fournis
+     if (!titre || !auteur || !isbn || !annee || !genre) {
+        return { succes: false, message: "Tous les champs sont obligatoires" };
+    }
     // - Valider le format ISBN
-    // - Vérifier que l'année est valide (entre 1000 et année actuelle)
-    // - Vérifier que l'ISBN n'existe pas déjà
-    // - Ajouter le livre avec un ID unique
     
-    console.log("À implémenter : ajouterLivre");
-    return { succes: false, message: "Fonction à implémenter" };
+    // - Vérifier que l'année est valide (entre 1000 et année actuelle)
+    const anneeActuelle = new Date().getFullYear();
+    if (annee < 1000 || annee > anneeActuelle) {
+        return { succes: false, message: "Année invalide" };
+    }
+    // - Vérifier que l'ISBN n'existe pas déjà
+    const livreExistant = bibliotheque.livres.find(livre => livre.isbn === isbn);
+    if (livreExistant) {
+        return { succes: false, message: "Ce livre existe déjà" };
+    }
+    // - Ajouter le livre avec un ID unique
+    const nouveauLivre = {
+        id: bibliotheque.prochainIdLivre++,
+        titre: titre,
+        auteur: auteur,
+        isbn: isbn,
+        annee: annee,
+        genre: genre,
+        disponible: true
+    };
+    
+    bibliotheque.livres.push(nouveauLivre);
+    return { succes: true, message: "Livre ajouté avec succès", livre: nouveauLivre };
+
 }
+
+// Test de la fonction ajouterLivre
+console.log(ajouterLivre("Le Petit Prince", "Antoine de Saint-Exupéry", "978-3-16-148410-0", 1943, "Fiction"));
+console.log(ajouterLivre("1984", "George Orwell", "978-0-452-28423-4", 1949, "Dystopie"));
+console.log(ajouterLivre("Moby-Dick", "Herman Melville", "978-0-14-243724-7", 1851, "Adventure"));
+
 
 /**
  * Recherche des livres selon différents critères
@@ -72,13 +99,36 @@ function rechercherLivres(criteres) {
 function ajouterUtilisateur(nom, email, telephone) {
     // TODO: Implémenter l'ajout d'utilisateur
     // - Valider l'email (format correct)
+    if (!email.includes('@') || !email.includes('.')) {
+        return { succes: false, message: "Email invalide" };
+    }
     // - Valider le téléphone (10 chiffres)
+    /**
+        if (!/^\d{10}$/.test(telephone)) {
+        return { succes: false, message: "Téléphone invalide" };
+    }
+     */
+
     // - Vérifier que l'email n'existe pas déjà
+    const utilisateurExistant = bibliotheque.utilisateurs.find(utilisateur => utilisateur.email === email);
+    if (utilisateurExistant) {
+        return { succes: false, message: "Cet utilisateur existe déjà" };
+    }
     // - Créer l'utilisateur avec ID unique
+    const nouvelUtilisateur = {
+        id: bibliotheque.prochainIdUtilisateur,
+        nom: nom,
+        email: email,
+        telephone: telephone
+    };
+    bibliotheque.prochainIdUtilisateur++;
     
-    console.log("À implémenter : ajouterUtilisateur");
-    return { succes: false, message: "Fonction à implémenter" };
+    bibliotheque.utilisateurs.push(nouvelUtilisateur);
+    return { succes: true, message: "Utilisateur ajouté avec succès", utilisateur: nouvelUtilisateur };
 }
+
+// Test de la fonction ajouterUtilisateur
+console.log(ajouterUtilisateur("Cheikh Anta", "saadbouH.code@gmail.com", "0612345678"));
 
 // ===================================
 // 3. GESTION DES EMPRUNTS
@@ -298,3 +348,4 @@ CRITÈRES D'ÉVALUATION :
 
 BONNE CHANCE ! 🚀
 */
+
