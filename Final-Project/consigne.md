@@ -35,7 +35,6 @@ Créer une table `profiles` pour stocker les informations des utilisateurs.
 - **Create** : Créer un profil automatiquement après inscription
 - **Read** : Afficher le profil de l'utilisateur connecté
 - **Update** : Permettre à l'utilisateur de modifier ses informations
-- **Delete** : Permettre la suppression du profil (optionnel)
 
 #### Fonctionnalités supplémentaires
 - Validation des formulaires côté client
